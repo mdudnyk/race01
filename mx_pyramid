@@ -1,0 +1,73 @@
+#include <unistd.h>
+void mx_printchar(char c){
+        write(1,&c,1);
+}
+void mx_pyramid(int n) {
+
+if (n < 2 || (n % 2 != 0)) {
+    return;
+}
+
+int und = 2 * n - 3;   // undercsore '_'
+int slash = n;         // slash '/'
+int pipe = n / 2;      // pipe '|' right down side of pyramid 
+// TOP OF THE PIRAMYD
+for (int i = 1; i < slash; i++) {
+    mx_printchar(' ');
+}
+mx_printchar('/');
+mx_printchar('\\');     
+mx_printchar('\n');
+
+for (int a = slash - 2; a >= slash - pipe; a--) {
+    for (int a1 = a; a1 > 0; a1--) {
+        mx_printchar(' ');
+    }
+    mx_printchar('/');
+    for (int a2 = slash - a; a2 > 1; a2--) {
+        mx_printchar(' ');
+    }
+    for (int a3 = 2; a3 < slash - a; a3++) {
+        mx_printchar(' ');  
+    }
+    mx_printchar('\\');
+    for (int a4 = 1; a4 < slash - a; a4++) {
+        mx_printchar(' ');  
+    }
+    mx_printchar('\\');
+    mx_printchar('\n');
+}
+// MIDDLE OF THE PIRAMYD
+for (int b = pipe - 1; b > 0; b--) {
+    for (int b1 = b; b1 > 0; b1--) {
+        mx_printchar(' ');
+    }
+    mx_printchar('/');
+    
+    for (int b2 = slash - b; b2 > 1; b2--) {
+        mx_printchar(' ');
+    }
+    for (int b3 = 2; b3 < slash - b; b3++) {
+        mx_printchar(' ');  
+    }
+    mx_printchar('\\');
+    for (int b4 = b; b4 > 0; b4--) {
+        mx_printchar(' ');  
+    }
+    mx_printchar('|');
+    mx_printchar('\n');
+}
+// BOTTOM OF THE PIRAMYD
+mx_printchar('/');
+for (int c = 0; c < und; c++) {
+    mx_printchar('_'); 
+}
+mx_printchar('\\');
+mx_printchar('|');
+mx_printchar('\n');
+}
+
+int main () {
+    mx_pyramid(8);
+    return 0;
+}
